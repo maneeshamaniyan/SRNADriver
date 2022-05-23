@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item
+        >
+        <shape android:shape="rectangle">
+            <corners
+                android:radius="3dp"/>
+            <solid
+                android:color="@color/text_yellow_02"/>
+            <stroke
+                android:color="@color/app_color"
+                android:width="0.5dp"/>
+        </shape>
+    </item>
+    <item
+        android:left="10dp"
+        android:right="10dp"
+        android:top="5dp"
+        android:bottom="5dp">
+
+        <bitmap
+            android:src="@drawable/ic_money_selected"
+            android:gravity="center" />
+    </item>
+</layer-list>

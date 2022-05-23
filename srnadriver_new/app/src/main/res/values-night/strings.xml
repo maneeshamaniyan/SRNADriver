@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="vehicle_type">Vehicle Type</string>
+    <string name="select_vehicle_type">Select Vehicle Type</string>
+    <string name="enter_brand">Enter Brand</string>
+    <string name="brand">Brand</string>
+    <string name="year">Year</string>
+    <string name="online">Online</string>
+    <string name="offline">Offline</string>
+    <string name="on_trip">On Trip</string>
+    <string name="reject">Reject</string>
+    <string name="accept">Accept</string>
+    <string name="trip_list">Trip List</string>
+    <string name="current_trip">Current Trip</string>
+    <string name="schedule_trip">Schedule Trip</string>
+    <string name="past_trip">Past Trip</string>
+</resources>

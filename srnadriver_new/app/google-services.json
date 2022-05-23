@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "825155082569",
+    "project_id": "srna-421c3",
+    "storage_bucket": "srna-421c3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:825155082569:android:8640bf9f1ae816f0286298",
+        "android_client_info": {
+          "package_name": "com.ryx.srnadriver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "825155082569-ctiiasbtglcpk9s86jdua8gmgskdkm8q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAypAi50esz2Hp7RLliLLwOsgFPJ1gVzkc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "825155082569-ctiiasbtglcpk9s86jdua8gmgskdkm8q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

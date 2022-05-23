@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.PaymentActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:background="@drawable/btn_black_submit"
+            android:backgroundTint="@color/white"
+            android:elevation="@dimen/_10sdp"
+            android:src="@drawable/ic_menu"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10ssp"
+            />
+
+        <fragment
+            android:id="@+id/mapFragment"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:layout_marginBottom="-50dp" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_driver"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginBottom="-15dp"
+            android:elevation="@dimen/_6sdp"
+            android:visibility="gone"
+            android:src="@drawable/profile_demo"
+            app:civ_border_color="@color/white"
+            app:civ_border_width="@dimen/_5sdp" />
+
+
+
+    </RelativeLayout>
+    <!--<include
+        android:id="@+id/bottom_payment_sheet"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="-1dp" />-->
+    <include
+        android:id="@+id/bottom_payment_sheet"
+        layout="@layout/fragment_complete_trip"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mapFragment" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,0 +1,83 @@
+<resources>
+    <string name="app_name">Srna Driver</string>
+    <!-- TODO: App Message-->
+    <string name="api_retry_error">Please retry!</string>
+    <string name="api_default_error">Something wrong happened!</string>
+    <string name="some_error">Some Error Occurred!</string>
+    <string name="connection_error">Internet connection was lost!</string>
+
+    <string name="retry">Try Again</string>
+    <string name="no_internet">No internet connection</string>
+
+    <string name="app_market_link">app_market_link</string>
+    <string name="app_google_play_store_link">link</string>
+    <string name="loading">Loading..</string>
+    <string name="activation_history">Activation History</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="phone_no">Phone No.</string>
+    <string name="we_use_your_mobile_number">We use your mobile number to send you for verification code</string>
+    <string name="phone_number">Mobile number</string>
+    <string name="enter_your_phone_number">Enter your mobile number</string>
+    <string name="submit">Submit</string>
+    <string name="provider_your_verification_code">Provider Your\nVerification Code</string>
+    <string name="please_type_verification_code_send_to_the"><![CDATA[<p>Please type verification code send<br>to the <b><u><font color="#e94615" size="13">%1$s</font></u></b></p> ]]></string>
+    <string name="enter_otp">Enter OTP</string>
+    <string name="enter_otp_mismatch">OTP not matchOTP not match</string>
+    <string name="resend_otp">Resend OTP</string>
+    <string name="your_mobile_no_is_verified_with_srna_taxi">Your Mobile No. Is Verified\nWith SRNA Taxi</string>
+    <string name="please_let_us_know_yours_details">Please let us know yours details</string>
+    <string name="full_name">Full Name</string>
+    <string name="enter_your_full_name">Enter your full name</string>
+    <string name="email">Email</string>
+    <string name="enter_your_email">Enter your email</string>
+    <string name="license_number">License Number</string>
+    <string name="enter_license_number">Enter License Number</string>
+    <string name="dob">DOB</string>
+    <string name="select_your_dob">Select Your  DOB</string>
+    <string name="gender">Gender</string>
+    <string name="select_gender">Select Gender</string>
+    <string name="next">Next</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyBQm_PBeQl5oIaRlnOKYKLDATz-co1CyNw</string>
+    <string name="where_would_you_like">Where Would You Like</string>
+    <string name="to_go_today">to Go Today?</string>
+    <string name="pickup_location">Pickup Location</string>
+    <string name="drop_Off_location">Drop Off Location</string>
+    <string name="book_now">Book Now</string>
+    <string name="exit_app_prompt">Are you sure want to exit app?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="search_location">Search Location</string>
+    <string name="from">From</string>
+    <string name="home">Home</string>
+    <string name="office">Office</string>
+    <string name="saved_places">Saved places</string>
+    <string name="continue_str">Continue</string>
+    <string name="where_to_drop_you">Where to Drop you?</string>
+    <string name="wrong_address">Wrong Address</string>
+    <string name="lat_lng_not_found">Lat lng not found</string>
+    <string name="location_select_mez">Select your location</string>
+    <string name="search_by_address">Search by address</string>
+    <string name="summary">Summary</string>
+    <string name="trip">Trip</string>
+    <string name="confirm">Confirm</string>
+    <string name="near_by_drivers">Near by Drivers</string>
+    <string name="looking_for_the_nearest_driver">Looking For The Nearest Driver</string>
+    <string name="your_booking_will">Your booking will be confirmed shortly once the driver accepts your ride(usually it take less than 1 minute)</string>
+    <string name="booking_successful">Booking Successful</string>
+    <string name="cancel_request">Cancel request</string>
+    <string name="vehicle_type">Vehicle Type</string>
+    <string name="select_vehicle_type">Select Vehicle Type</string>
+    <string name="enter_brand">Enter Brand</string>
+    <string name="brand">Brand</string>
+    <string name="year">Year</string>
+    <string name="online">Online</string>
+    <string name="offline">Offline</string>
+    <string name="on_trip">On Trip</string>
+    <string name="reject">Reject</string>
+    <string name="accept">Accept</string>
+    <string name="trip_list">Trip List</string>
+    <string name="current_trip">Current Trip</string>
+    <string name="schedule_trip">Schedule Trip</string>
+    <string name="past_trip">Past Trip</string>
+</resources>
