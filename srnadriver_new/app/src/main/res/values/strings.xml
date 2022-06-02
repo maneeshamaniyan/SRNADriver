@@ -80,4 +80,19 @@
     <string name="current_trip">Current Trip</string>
     <string name="schedule_trip">Schedule Trip</string>
     <string name="past_trip">Past Trip</string>
+
+    <string name="my_trips">My Trips</string>
+    <string name="my_earning">My Earning</string>
+    <string name="rating">Rating</string>
+    <string name="profile">Profile</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="invite_friends">Invite friends</string>
+    <string name="logout">Logout</string>
+    <string name="login">Login</string>
+
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="about">About</string>
+    <string name="terms_and_conditions">Terms and Conditions</string>
+    <string name="sign_out_prompt">Are you sure you want to logout?</string>
+
 </resources>

@@ -1,15 +1,6 @@
 package com.ryx.srnadriver.Activity;
 
-import static java.sql.DriverManager.println;
-
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.Manifest;
-import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -23,9 +14,13 @@ import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -35,7 +30,6 @@ import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.DexterError;
-import com.karumi.dexter.listener.PermissionDeniedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.PermissionRequestErrorListener;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
@@ -58,15 +52,14 @@ import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends BaseActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
+    static Boolean isTouched = false;
     ActivityMainBinding binding;
     Fragment fragment;
     SharedPreferences.Editor preferencesEditor;
     SharedPreferences prefs;
     MyBackGroundService myBackGroundService = null;
+    boolean loggedin;
     boolean mBound = false;
-    FusedLocationProviderClient fusedLocationClient;
-    static Boolean isTouched = false;
-
     private final ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder iBinder) {
@@ -82,6 +75,8 @@ public class MainActivity extends BaseActivity implements SharedPreferences.OnSh
             mBound = false;
         }
     };
+    FusedLocationProviderClient fusedLocationClient;
+    boolean doubleBackToExitPressedOnce = false;
 
     @Override
     protected void onStart() {
@@ -93,8 +88,7 @@ public class MainActivity extends BaseActivity implements SharedPreferences.OnSh
 
     @Override
     protected void onStop() {
-        if(mBound)
-        {
+        if (mBound) {
             unbindService(serviceConnection);
             mBound = false;
         }
@@ -111,6 +105,7 @@ public class MainActivity extends BaseActivity implements SharedPreferences.OnSh
         prefs = getSharedPreferences(Constatnts.app, MODE_PRIVATE);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        loggedin = prefs.getBoolean(Constatnts.loggedin, false);
 
         getPermission();
         initView();
@@ -135,8 +130,7 @@ public class MainActivity extends BaseActivity implements SharedPreferences.OnSh
                         });
 
             }
-        }
-        else {
+        } else {
             //mMap.getMyLocation().getLatitude();
             //buildGoogleApiClient();
             //mMap.setMyLocationEnabled(true);
@@ -145,9 +139,8 @@ public class MainActivity extends BaseActivity implements SharedPreferences.OnSh
         loadFragment(fragment);
 
 
-
-
         initEvent();
+        setSideMenuItemClick();
 
     }
 
@@ -201,6 +194,26 @@ public class MainActivity extends BaseActivity implements SharedPreferences.OnSh
                     binding.appbar.switchRoomAvailability.setVisibility(View.GONE);
                 }
         );
+        binding.appbar.btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDrawer();
+            }
+        });
+    }
+
+    private void setSideMenuItemClick() {
+        binding.drawerLayoutIn.cdLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (binding.drawerLayoutIn.tvLogout.getText().equals(getString(R.string.logout)))
+                    signOut();
+                else if (binding.drawerLayoutIn.tvLogout.getText().equals(getString(R.string.login))) {
+                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
+
+                }
+            }
+        });
     }
 
     private void initEvent() {
@@ -214,8 +227,6 @@ public class MainActivity extends BaseActivity implements SharedPreferences.OnSh
         transaction.addToBackStack(null);
         transaction.commit();
     }
-
-    boolean doubleBackToExitPressedOnce = false;
 
     @Override
     public void onBackPressed() {
@@ -247,7 +258,6 @@ public class MainActivity extends BaseActivity implements SharedPreferences.OnSh
     }
 
 
-
     void getPermission() {
         Dexter.withContext(MainActivity.this)
                 .withPermissions(
@@ -257,77 +267,73 @@ public class MainActivity extends BaseActivity implements SharedPreferences.OnSh
                                         Manifest.permission.ACCESS_FINE_LOCATION)
 
                 ).withListener(new MultiplePermissionsListener() {
-            @Override
-            public void onPermissionsChecked(MultiplePermissionsReport report) {
+                    @Override
+                    public void onPermissionsChecked(MultiplePermissionsReport report) {
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    if (ContextCompat.checkSelfPermission(MainActivity.this,
-                            Manifest.permission.ACCESS_FINE_LOCATION)
-                            == PackageManager.PERMISSION_GRANTED) {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                            if (ContextCompat.checkSelfPermission(MainActivity.this,
+                                    Manifest.permission.ACCESS_FINE_LOCATION)
+                                    == PackageManager.PERMISSION_GRANTED) {
 
 
-                        binding.appbar.switchRoomAvailability.setOnTouchListener((view, motionEvent) -> {
-                            isTouched = true;
-                            return false;
-                        });
+                                binding.appbar.switchRoomAvailability.setOnTouchListener((view, motionEvent) -> {
+                                    isTouched = true;
+                                    return false;
+                                });
 
-                        binding.appbar.switchRoomAvailability.setOnCheckedChangeListener((buttonView, isChecked) -> {
-                            if (isTouched) {
-                                isTouched = false;
-                                if (isChecked) {
-                                    //Toast.makeText(TestActivity.this, "Checked", Toast.LENGTH_SHORT).show();
+                                binding.appbar.switchRoomAvailability.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                                    if (isTouched) {
+                                        isTouched = false;
+                                        if (isChecked) {
+                                            //Toast.makeText(TestActivity.this, "Checked", Toast.LENGTH_SHORT).show();
 
-                                    myBackGroundService.requestLocationUpdate();
-                                    binding.appbar.tvOffline.setVisibility(View.GONE);
-                                    binding.appbar.tvOnline.setVisibility(View.VISIBLE);
+                                            myBackGroundService.requestLocationUpdate();
+                                            binding.appbar.tvOffline.setVisibility(View.GONE);
+                                            binding.appbar.tvOnline.setVisibility(View.VISIBLE);
 
-                                }
-                                else {
+                                        } else {
 
-                                    //Toast.makeText(TestActivity.this, "UnChecked", Toast.LENGTH_SHORT).show();
-                                    myBackGroundService.removeLocationUpdate();
-                                    binding.appbar.tvOffline.setVisibility(View.VISIBLE);
-                                    binding.appbar.tvOnline.setVisibility(View.GONE);
-                                }
+                                            //Toast.makeText(TestActivity.this, "UnChecked", Toast.LENGTH_SHORT).show();
+                                            myBackGroundService.removeLocationUpdate();
+                                            binding.appbar.tvOffline.setVisibility(View.VISIBLE);
+                                            binding.appbar.tvOnline.setVisibility(View.GONE);
+                                        }
+                                    }
+                                });
+
+                                setButtonState(Constatnts.requestLocationUpdates(MainActivity.this));
+                                bindService(new Intent(MainActivity.this,
+                                                MyBackGroundService.class),
+                                        serviceConnection,
+                                        Context.BIND_AUTO_CREATE);
+                            } else {
+
                             }
-                        });
-
-                        setButtonState(Constatnts.requestLocationUpdates(MainActivity.this));
-                        bindService(new Intent(MainActivity.this,
-                                        MyBackGroundService.class),
-                                serviceConnection,
-                                Context.BIND_AUTO_CREATE);
+                        }
                     }
-                    else {
 
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
+
+                        token.continuePermissionRequest();
                     }
-                }
-            }
+                }).withErrorListener(new PermissionRequestErrorListener() {
+                    @Override
+                    public void onError(DexterError dexterError) {
 
-            @Override
-            public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
-
-                token.continuePermissionRequest();
-            }
-        }).withErrorListener(new PermissionRequestErrorListener() {
-            @Override
-            public void onError(DexterError dexterError) {
-
-                Log.e("Error",dexterError.toString());
-            }
-        }).check();
+                        Log.e("Error", dexterError.toString());
+                    }
+                }).check();
 
     }
 
     private void setButtonState(boolean aBoolean) {
-        statuschange(MainActivity.this,aBoolean);
-        if(aBoolean)
-        {
+        statuschange(MainActivity.this, aBoolean);
+        if (aBoolean) {
             binding.appbar.switchRoomAvailability.setChecked(true);
             binding.appbar.tvOffline.setVisibility(View.GONE);
             binding.appbar.tvOnline.setVisibility(View.VISIBLE);
-        }
-        else {
+        } else {
             binding.appbar.switchRoomAvailability.setChecked(false);
             binding.appbar.tvOffline.setVisibility(View.VISIBLE);
             binding.appbar.tvOnline.setVisibility(View.GONE);
@@ -335,46 +341,75 @@ public class MainActivity extends BaseActivity implements SharedPreferences.OnSh
 
     }
 
+    @Override
+    public void openDrawer() {
+        super.openDrawer();
+        binding.drawerView.openDrawer(GravityCompat.START);
+
+    }
+
+    @Override
+    public void closeDrawer() {
+        super.closeDrawer();
+        binding.drawerView.closeDrawers();
+        if (!loggedin)
+
+            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+
+
+    }
+
     private void checkSwitch(boolean aBoolean) {
-        if(aBoolean)
-        {
+        if (aBoolean) {
             myBackGroundService.requestLocationUpdate();
             binding.appbar.tvOffline.setVisibility(View.GONE);
             binding.appbar.tvOnline.setVisibility(View.VISIBLE);
         }
     }
 
+    public void signOut() {
+        new AlertDialog.Builder(this)
+                .setMessage(getString(R.string.sign_out_prompt))
+                .setTitle(getString(R.string.logout))
+                .setPositiveButton(R.string.yes, (dialog, which) -> {
+                    logoutUser();
+                    binding.drawerLayoutIn.tvLogout.setText(getString(R.string.login));
+                })
+                .setNegativeButton(R.string.no, null)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
+        loggedin = prefs.getBoolean(Constatnts.loggedin, false);
 
-    @Subscribe(sticky = true,threadMode = ThreadMode.MAIN)
-    public void onListenLocation(SendLocationToActivity event)
-    {
-        if(event !=null)
-        {
+    }
+
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    public void onListenLocation(SendLocationToActivity event) {
+        if (event != null) {
             String data = new StringBuilder()
                     .append(event.getLocation().getLatitude())
                     .append("/")
                     .append(event.getLocation().getLongitude())
                     .toString();
-            Log.d("PICHUP",""+data);
+            Log.d("PICHUP", "" + data);
             //Log.d("LocationChange:",data);
             //Toast.makeText(this, ""+data, Toast.LENGTH_SHORT).show();
             JSONObject jsonObject = new JSONObject();
             try {
 
-                jsonObject.put("driverId", prefs.getInt(Constatnts.driverId,0));
-                jsonObject.put("status",1);
-                jsonObject.put("currentLatitude",event.getLocation().getLatitude());
-                jsonObject.put("currentLongitude",event.getLocation().getLongitude());
+                jsonObject.put("driverId", prefs.getInt(Constatnts.driverId, 0));
+                jsonObject.put("status", 1);
+                jsonObject.put("currentLatitude", event.getLocation().getLatitude());
+                jsonObject.put("currentLongitude", event.getLocation().getLongitude());
 
-            } catch (JSONException e)  {
+            } catch (JSONException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
 
             JsonObject gsonObject = JsonParser.parseString(jsonObject.toString()).getAsJsonObject();
-            Log.d("positionchange",gsonObject.toString());
-            updatedposition(MainActivity.this,gsonObject);
-            rideRequest(MainActivity.this,binding.getRoot());
+            Log.d("positionchange", gsonObject.toString());
+            updatedposition(MainActivity.this, gsonObject);
+            rideRequest(MainActivity.this, binding.getRoot());
         }
     }
 }

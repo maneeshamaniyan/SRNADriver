@@ -4,24 +4,17 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
-import androidx.cardview.widget.CardView;
-import androidx.core.content.res.ResourcesCompat;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
@@ -30,12 +23,10 @@ import com.google.gson.JsonParser;
 import com.ryx.srnadriver.API.ApiClient;
 import com.ryx.srnadriver.API.ApiInterface;
 import com.ryx.srnadriver.Activity.CompleteActivity;
-import com.ryx.srnadriver.Activity.LoginActivity;
 import com.ryx.srnadriver.Activity.MainActivity;
 import com.ryx.srnadriver.Activity.PaymentActivity;
 import com.ryx.srnadriver.Activity.PickupActivity;
 import com.ryx.srnadriver.Activity.RegisterActivity;
-import com.ryx.srnadriver.AllInterface.interface_splitfare;
 import com.ryx.srnadriver.Model.DriverRideResponse;
 import com.ryx.srnadriver.Model.LoginResponse;
 import com.ryx.srnadriver.Model.PostitionResponse;
@@ -150,6 +141,21 @@ public abstract class BaseActivity extends AppCompatActivity {
                 });
         ;
     }
+
+    //logout user
+    public void logoutUser() {
+        preferencesEditor.remove(Constatnts.driverId).commit();
+        preferencesEditor.putBoolean(Constatnts.loggedin, false);
+        preferencesEditor.remove(Constatnts.useremail).commit();
+
+        preferencesEditor.remove(Constatnts.userphone).commit();
+        preferencesEditor.remove(Constatnts.username).commit();
+        preferencesEditor.remove(Constatnts.userphoto).commit();
+        preferencesEditor.remove(Constatnts.driverId).commit();
+
+
+    }
+
 
     //statuschange
     public void statuschange(Context context, boolean status) {
@@ -635,7 +641,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
 
     //Confirm Schedule
-    public void confirmSchedule(Context context, int rideRequestId ) {
+    public void confirmSchedule(Context context, int rideRequestId) {
 
 
         api.confirmSchedule(rideRequestId)
@@ -659,7 +665,7 @@ public abstract class BaseActivity extends AppCompatActivity {
                                 startActivity(yourIntent);
                                 finishAffinity();
                             } else {
-                                error(context, mRideResponse .getMessage());
+                                error(context, mRideResponse.getMessage());
                                 //Toast.makeText(context, loginResponse.getMessage(), Toast.LENGTH_SHORT).show();
 
                             }
@@ -691,5 +697,11 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     }
 
+    public void openDrawer() {
 
+    }
+
+    public void closeDrawer() {
+
+    }
 }

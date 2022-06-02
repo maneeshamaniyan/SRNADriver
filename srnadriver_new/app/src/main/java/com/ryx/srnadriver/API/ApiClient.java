@@ -19,7 +19,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
     //public static final String BASE_URL = "http://gopadel.r-y-x.net/";
-    public static final String BASE_URL = "https://srna.ae/admin/";
+//    public static final String BASE_URL = "https://srna.ae/admin/";
+    public static final String BASE_URL = "http://srna.r-y-x.net/";
+
     public static final String version = "api/v1/";
     private static Retrofit retrofit = null;
 

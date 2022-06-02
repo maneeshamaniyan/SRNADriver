@@ -3,6 +3,28 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/manee/Desktop/Projects/SRNA/Driver/SRNADriver/srnadriver_new/app/src/main/res/drawable/bg_rect.xml" value="0.156" />
+        <entry key="..\:/Users/manee/Desktop/Projects/SRNA/Driver/SRNADriver/srnadriver_new/app/src/main/res/drawable/black_circle_white_border.xml" value="0.156" />
+        <entry key="..\:/Users/manee/Desktop/Projects/SRNA/Driver/SRNADriver/srnadriver_new/app/src/main/res/drawable/black_with_boarder.xml" value="0.156" />
+        <entry key="..\:/Users/manee/Desktop/Projects/SRNA/Driver/SRNADriver/srnadriver_new/app/src/main/res/drawable/blue_with_boarder.xml" value="0.156" />
+        <entry key="..\:/Users/manee/Desktop/Projects/SRNA/Driver/SRNADriver/srnadriver_new/app/src/main/res/drawable/bottom_home_icon.xml" value="0.156" />
+        <entry key="..\:/Users/manee/Desktop/Projects/SRNA/Driver/SRNADriver/srnadriver_new/app/src/main/res/drawable/bottom_money_icon.xml" value="0.156" />
+        <entry key="..\:/Users/manee/Desktop/Projects/SRNA/Driver/SRNADriver/srnadriver_new/app/src/main/res/drawable/bottom_navigation_color.xml" value="0.156" />
+        <entry key="..\:/Users/manee/Desktop/Projects/SRNA/Driver/SRNADriver/srnadriver_new/app/src/main/res/drawable/bottom_profile_icon.xml" value="0.156" />
+        <entry key="..\:/Users/manee/Desktop/Projects/SRNA/Driver/SRNADriver/srnadriver_new/app/src/main/res/drawable/bottom_ride_icon.xml" value="0.156" />
+        <entry key="..\:/Users/manee/Desktop/Projects/SRNA/Driver/SRNADriver/srnadriver_new/app/src/main/res/drawable/btn_back.xml" value="0.156" />
+        <entry key="..\:/Users/manee/Desktop/Projects/SRNA/Driver/SRNADriver/srnadriver_new/app/src/main/res/drawable/ic_facebook_logo.xml" value="0.156" />
+        <entry key="..\:/Users/manee/Desktop/Projects/SRNA/Driver/SRNADriver/srnadriver_new/app/src/main/res/drawable/ic_location_pin.xml" value="0.156" />
+        <entry key="..\:/Users/manee/Desktop/Projects/SRNA/Driver/SRNADriver/srnadriver_new/app/src/main/res/drawable/profile_icon.xml" value="0.156" />
+        <entry key="..\:/Users/manee/Desktop/Projects/SRNA/Driver/SRNADriver/srnadriver_new/app/src/main/res/drawable/yellow_image_background.xml" value="0.156" />
+        <entry key="..\:/Users/manee/Desktop/Projects/SRNA/Driver/SRNADriver/srnadriver_new/app/src/main/res/drawable/yellow_top_round_background.xml" value="0.156" />
+        <entry key="..\:/Users/manee/Desktop/Projects/SRNA/Driver/SRNADriver/srnadriver_new/app/src/main/res/drawable/yellow_with_boarder.xml" value="0.156" />
+        <entry key="..\:/Users/manee/Desktop/Projects/SRNA/Driver/SRNADriver/srnadriver_new/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/manee/Desktop/Projects/SRNA/Driver/SRNADriver/srnadriver_new/app/src/main/res/layout/bottom_menu_item.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/manee/Desktop/Projects/SRNA/Driver/SRNADriver/srnadriver_new/app/src/main/res/layout/content_main.xml" value="0.25" />
+        <entry key="..\:/Users/manee/Desktop/Projects/SRNA/Driver/SRNADriver/srnadriver_new/app/src/main/res/layout/current_item.xml" value="0.10989583333333333" />
+        <entry key="..\:/Users/manee/Desktop/Projects/SRNA/Driver/SRNADriver/srnadriver_new/app/src/main/res/layout/drawer_layout.xml" value="0.25" />
+        <entry key="..\:/Users/manee/Desktop/Projects/SRNA/Driver/SRNADriver/srnadriver_new/app/src/main/res/layout/ride_request_dialog.xml" value="0.10989583333333333" />
         <entry key="app/src/main/res/drawable/dialog_white_background.xml" value="0.1455" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.33958333333333335" />
       </map>
